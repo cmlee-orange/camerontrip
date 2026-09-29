@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Cameron Highlands Family Trip</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#faf5ea;--card:#fffdf7;--ink:#2b2a22;--mut:#6d6a5c;--g:#2f6b3f;--g2:#dcebd3;--r:#c8324a;--line:#e6dcc4}
+@media(prefers-color-scheme:dark){:root{--bg:#171d17;--card:#212a21;--ink:#f0ecdd;--mut:#a9ad9b;--g:#7fc48f;--g2:#2b3b2c;--r:#ff7d8f;--line:#36432f}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.hero{background:linear-gradient(180deg,#1f4a2c,#2f6b3f);color:#fff;padding:28px 18px 64px;position:relative;overflow:hidden}
+.hero svg{position:absolute;left:0;bottom:-1px;width:100%;height:60px}
+.wrap{max-width:1080px;margin:0 auto;position:relative}
+.lang{position:absolute;right:0;top:0;background:#ffffff33;border:0;color:#fff;border-radius:99px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer}
+h1{font-family:Georgia,serif;margin:0;font-size:clamp(24px,6vw,42px);padding-right:90px}
+.sub{opacity:.9;margin:4px 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{background:#ffffff26;border-radius:99px;padding:5px 12px;font-size:14px}
+main{max-width:1080px;margin:-30px auto 0;padding:0 14px 40px;position:relative;display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:900px){main{grid-template-columns:1fr 280px}.side{position:sticky;top:12px;align-self:start}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;transition:transform .2s,box-shadow .2s}
+.card.h:hover{transform:translateY(-2px);box-shadow:0 6px 18px #0002}
+.tabs{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x mandatory}
+.tab{flex:1 0 140px;scroll-snap-align:start;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:12px;color:var(--ink);cursor:pointer;font:inherit;transition:.2s}
+.tab b{display:block;font-size:18px}.tab span{color:var(--mut);font-size:14px}
+.tab[aria-selected=true]{border-color:var(--g);background:var(--g2)}
+h2{font-family:Georgia,serif;margin:14px 0 6px;font-size:24px}h3{margin:18px 0 8px;font-size:18px;color:var(--g)}
+.stack{display:grid;gap:12px}
+.tl{border-left:3px solid var(--g2);margin-left:8px;padding-left:16px;display:grid;gap:10px}
+.time{font-weight:700;color:var(--r)}
+.pill{display:inline-block;border-radius:99px;padding:2px 10px;font-size:12px;margin:2px 4px 2px 0;background:var(--g2);color:var(--g)}
+.pill.e{background:#f3e3c4;color:#6b4a1c}.pill.w{background:#fbd9de;color:#8c1d33}
+@media(prefers-color-scheme:dark){.pill.e{background:#4a3c22;color:#f0d9a8}.pill.w{background:#4b2229;color:#ffb3bf}}
+.btn{border:1px solid var(--g);background:none;color:var(--g);border-radius:10px;padding:6px 12px;font:inherit;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.f{background:var(--g);color:#fff}.btn:active{transform:scale(.97)}
+.tip{background:#fff3d6;border-left:4px solid #e0a82e;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px;color:#4d3b10}
+@media(prefers-color-scheme:dark){.tip{background:#3d3418;color:#f3e2b0}}
+.exp{max-height:0;overflow:hidden;transition:max-height .3s}.open .exp{max-height:500px}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cb{width:22px;height:22px;accent-color:var(--g);flex:none}
+.opt{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.bar{height:8px;background:var(--g2);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--g);transition:width .4s}
+.off{opacity:.5}
+.sw{display:flex;gap:6px;background:var(--g2);padding:4px;border-radius:99px;width:max-content}
+.sw button{border:0;background:none;color:var(--ink);padding:6px 14px;border-radius:99px;font:inherit;cursor:pointer}.sw .on{background:var(--g);color:#fff}
+label.ck{display:flex;gap:10px;align-items:center;padding:6px 0;cursor:pointer}label.ck.d span{text-decoration:line-through;color:var(--mut)}
+.prog{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-weight:600}
+small,.m{color:var(--mut);font-size:13px}
+.lunch{background:var(--g2)}
+</style></head><body>
+<div class="hero"><div class="wrap">
+<button class="lang" id="langBtn" onclick="setLang()"></button>
+<h1 id="hTitle"></h1><p class="sub" id="hSub"></p><div class="chips" id="hChips"></div></div>
+<svg viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M0 60V35Q80 0 160 30T320 25T480 33T640 15T800 30V60Z" fill="#faf5ea" opacity=".6"/><path d="M0 60V48Q120 25 240 45T480 43T800 41V60Z" fill="#faf5ea"/></svg></div>
+<main><div id="app"></div>
+<aside class="side"><details class="card" open><summary><b id="famH"></b></summary><div id="famBody"></div></details></aside></main>
+
+<script>
+/* ===== 1. PASTE YOUR FIREBASE URL HERE (no trailing slash). Empty = votes stay on this device only ===== */
+const DB="https://camerontrip-833ff-default-rtdb.asia-southeast1.firebasedatabase.app/";
+
+/* ===== 2. TRIP DATA. Text is [English, 中文] ===== */
+const mapQ=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q+" Cameron Highlands");
+const TRIP={
+ families:[["A",["2 adults + 1 child (5)","2位大人 + 1位小孩（5岁）"]],["B",["2 adults + 2 children (5, 3)","2位大人 + 2位小孩（5岁、3岁）"]],["C",["2 adults + 2 children (5, 2)","2位大人 + 2位小孩（5岁、2岁）"]],["D",["1 adult + 1 child (8)","1位大人 + 1位小孩（8岁）"]]],
+ days:[
+ {tab:[["Day 1","第1天"],["Friday · 2 Oct","星期五 · 10月2日"]],title:["Day 1 · Arrival & Night Market","第1天 · 抵达与夜市"],blocks:[
+  {k:"stop",time:["3:00 PM","下午3:00"],title:["Check-in · Golden Hill","入住 · Golden Hill"],loc:"Golden Hill",dur:["~1.5–2 hrs","约1.5–2小时"],
+   notes:["Check in, drop luggage, rest, freshen up, and give the children some downtime.","办理入住、放行李、休息、梳洗，让孩子们放松一下。"],
+   tip:["Keep the first afternoon relaxed after the drive. The group has several young children, so avoid scheduling an attraction immediately after check-in.","车程后第一个下午请保持轻松。团队有多位年幼孩子，入住后不要立刻安排景点。"]},
+  {k:"stop",time:["Evening · suggest ~6:00 PM","傍晚 · 建议约下午6:00"],title:["Cameron Highlands Night Market","金马仑夜市"],loc:"Night Market",dur:["~1.5 hrs (estimate)","约1.5小时（估计）"],
+   notes:["Food to try: satay, grilled corn, strawberries, street snacks, local desserts and drinks. What to buy: strawberries, corn and snacks. Kid-friendly picks: corn, fruit and plain grilled items. Check opening days and hours before you go.","可尝：沙爹、烤玉米、草莓、街头小吃、本地甜品和饮料。适合购买：草莓、玉米、零食。适合小孩：玉米、水果、原味烧烤。出发前请确认夜市营业日和时间。"],
+   tip:["It gets crowded, so hold little hands and bring a light jacket.","人多拥挤，请牵好小朋友，并带上薄外套。"]},
+  {k:"stop",time:["Dinner · suggest ~7:30 PM","晚餐 · 建议约晚上7:30"],title:["Satay Celup","沙爹火锅（Satay Celup）"],loc:"Satay Celup",dur:["~1–1.5 hrs (estimate)","约1–1.5小时（估计）"],
+   big:["Homemade Satey Celup at Hostel","回屋 - 自制沙爹火锅"],
+   notes:["Kid-friendly: choose plain skewers, avoid very spicy sauce, add a rice or soup item.","适合小孩：选原味串烧，避免太辣的酱，再加饭或汤。"]}
+ ]},
+ {tab:[["Day 2","第2天"],["Saturday · 3 Oct","星期六 · 10月3日"]],title:["Day 2 · Tea, Flowers, Farms & Steamboat","第2天 · 茶园、花园、农场与火锅"],blocks:[
+  {k:"vote",id:"bf2",title:["Breakfast · Choose 1","早餐 · 选一个"],opts:[
+   {n:["Traditional kopitiam","传统咖啡店"],style:["Kaya toast, soft eggs, kopi/teh","咖椰吐司、半熟蛋、咖啡/茶"],kid:["Simple food kids will eat","简单、小孩爱吃"],why:["Quick, cheap and easy. Pick a specific shop before you go.","快速、便宜、方便。出发前先选定一家店。"]},
+   {n:["Noodle / local breakfast stall","面食/本地早餐摊"],style:["Noodles, congee or nasi lemak","面、粥或椰浆饭"],kid:["Plain noodles suit toddlers","清淡的面适合幼儿"],why:["Hot local breakfast on a cool morning.","凉爽的早晨来一份热腾腾的本地早餐。"]},
+   {n:["Hotel / nearby café breakfast","酒店/附近咖啡馆早餐"],style:["Eggs, toast, pancakes","蛋、吐司、松饼"],kid:["Seating for a big group is easier","大团体较容易入座"],why:["Least travel with 6 kids. Check opening hours.","带6个孩子最省路程。请确认营业时间。"]}]},
+  {k:"route",id:"r2",start:"9:45 AM",sel:["flora","boh","straw"],items:[
+   {id:"flora",n:["Flora Park","花卉公园（Flora Park）"],dur:90,tr:20,rain:false,s:"⭐⭐⭐⭐",t2:["Yes (easy paths)","可以（路平坦）"],t38:["Yes","可以"],walk:["Easy","轻松"],hi:["Flowers and photos","花海与拍照"],cost:["Check on site","请到现场确认"],note:["Flat and relaxed. A good first stop.","平坦轻松，适合作为第一站。"]},
+   {id:"boh",n:["BOH Tea Centre","BOH茶园中心"],dur:75,tr:30,rain:true,s:"⭐⭐⭐⭐⭐",t2:["Yes (carry or stroller)","可以（抱或推车）"],t38:["Yes","可以"],walk:["Easy–moderate","轻松至中等"],hi:["Tea plantation views, café and tea","茶园美景、咖啡馆与茶"],cost:["Entry free; food and drink extra (verify)","入场免费；饮食另计（请确认）"],note:["The café is sheltered in light rain. The road is winding, so plan for motion sickness.","小雨时咖啡馆可避雨。山路弯曲，请预防晕车。"]},
+   {id:"kea",n:["Kea Farm","Kea Farm 农场"],dur:60,tr:25,rain:false,s:"⭐⭐⭐",t2:["OK (stairs and market)","尚可（有楼梯和市集）"],t38:["Yes","可以"],walk:["Moderate","中等"],hi:["Farm market and views","农场市集与风景"],cost:["Check on site","请到现场确认"],note:["Popular and crowded, so parking can be slow.","游客多，停车可能较慢。"]},
+   {id:"sanc",n:["Cameron Highlands Sanctuary","金马仑保护区（Sanctuary）"],dur:60,tr:20,rain:true,s:"⭐⭐⭐⭐",t2:["Maybe","视情况"],t38:["Yes","可以"],walk:["Easy","轻松"],hi:["Animal encounters","近距离接触动物"],cost:["Check on site","请到现场确认"],note:["Check current opening hours before leaving.","出发前请确认最新营业时间。"]},
+   {id:"straw",n:["Strawberry farm","草莓园"],dur:45,tr:15,rain:true,s:"⭐⭐⭐⭐⭐",t2:["Yes","可以"],t38:["Yes, kids love it","可以，孩子们很喜欢"],walk:["Easy","轻松"],hi:["Strawberry treats","草莓甜品"],cost:["Check on site","请到现场确认"],note:["An easy fallback if the kids are tired.","孩子累了时的轻松备选。"]}]},
+  {k:"vote",id:"dn2",title:["Dinner · Cameron Highlands Steamboat (13 people)","晚餐 · 金马仑火锅（13人）"],opts:[
+   {n:["Steamboat option 1 (add name)","火锅选项1（请填店名）"],style:["Large-group friendly","适合大团体"],kid:["Ask for a mild soup","要求清淡汤底"],why:["Book a table for 13 ahead. Availability not checked.","请提前订13人位。是否有位未确认。"]},
+   {n:["Steamboat option 2 (add name)","火锅选项2（请填店名）"],style:["Buffet style","自助式"],kid:["Plain broth for toddlers","幼儿可选清汤"],why:["Compare prices first.","先比较价格。"]},
+   {n:["Steamboat option 3 (add name)","火锅选项3（请填店名）"],style:["Set menu","套餐"],kid:["Ask for kids' portions","可要求小孩份量"],why:["Set menus are easier to split across 4 families.","套餐更容易4家人分摊。"]}]}
+ ]},
+ {tab:[["Day 3","第3天"],["Sunday · 4 Oct","星期日 · 10月4日"]],title:["Day 3 · Breakfast, Local Produce & Check-out","第3天 · 早餐、当地农产品与退房"],blocks:[
+  {k:"vote",id:"bf3",title:["Breakfast · Choose 1","早餐 · 选一个"],opts:[
+   {n:["Quick kopitiam near Golden Hill","Golden Hill 附近咖啡店"],style:["Kaya toast, eggs, noodles","咖椰吐司、蛋、面"],kid:["Fast and simple","快速简单"],why:["Best for a quick check-out morning.","退房日早上最省时间。"]},
+   {n:["Hotel or nearby café","酒店或附近咖啡馆"],style:["Set breakfast","套餐早餐"],kid:["Easy seating","容易入座"],why:["Least travel with luggage in the car.","行李在车上，路程最少。"]}]},
+  {k:"stop",time:["Check-out time (confirm with hotel)","退房时间（请向酒店确认）"],title:["Check out · Golden Hill","退房 · Golden Hill"],loc:"Golden Hill",dur:["Allow 45–60 min","预留45–60分钟"],
+   notes:["Pack, load luggage, do a final room check and get the children ready. Confirm the exact check-out time with the hotel.","收拾行李、装车、最后检查房间、帮孩子准备好。请向酒店确认确切退房时间。"],
+   tip:["Pack the night before so the morning stays calm.","前一晚先打包，早上会从容很多。"]},
+  {k:"check",id:"buy",title:["🛒 Last Stop: Buy Cameron Highlands Produce","🛒 最后一站：购买金马仑农产品"],loc:"Vegetable market",
+   note:["Pick a market or farm stall on the way out and check its opening hours.","在离开途中选一个市场或农场摊位，并确认营业时间。"],
+   items:[["Vegetables","蔬菜"],["Strawberries","草莓"],["Corn","玉米"],["Other local produce","其他当地农产品"],["Snacks / souvenirs","零食 / 纪念品"]]}
+ ]}],
+ pack:[["Kids' clothes","小孩衣物"],["Jackets","外套"],["Umbrellas","雨伞"],["Comfortable shoes","舒适的鞋子"],["Water bottles","水瓶"],["Snacks","零食"],["Stroller if needed","需要的话带婴儿推车"],["Medicine / first-aid basics","常备药 / 急救用品"],["Shopping bags / cooler bag for produce","购物袋 / 保冷袋（装农产品）"]],
+ notes:[["Weather can change quickly, so bring light jackets and umbrellas or raincoats.","天气变化快，请带薄外套和雨伞/雨衣。"],["Young children need rest periods, so avoid overloading Day 2.","小孩需要休息，第2天不要排太满。"],["Check attraction opening hours before departure.","出发前确认景点营业时间。"],["Check traffic before leaving for popular attractions.","前往热门景点前先查看路况。"],["Allow extra time for parking and walking with little ones.","预留额外时间停车和带小孩步行。"]]
+};
+
+/* ===== 3. UI TEXT ===== */
+const UI={
+ title:["🍓 Cameron Highlands Family Trip","🍓 金马仑家庭旅行"],sub:["2–4 October 2026 · 2 Nights · 13 People","2026年10月2–4日 · 2晚 · 13人"],
+ chips:[["👨‍👩‍👧‍👦 4 Families","👨‍👩‍👧‍👦 4个家庭"],["👨‍👩‍👧 7 Adults","👨‍👩‍👧 7位大人"],["👧 6 Children","👧 6位小孩"],["🏨 Golden Hill","🏨 Golden Hill"]],
+ group:["👨‍👩‍👧‍👦 Family Member","👨‍👩‍👧‍👦 家庭成员"],fam:["Family","家庭"],total:["Total: 13 people","合计：13人"],totalSub:["7 adults · 6 children (ages 2, 3, 5, 5, 5, 8)","7位大人 · 6位小孩（2、3、5、5、5、8岁）"],
+ good:["☀️ Good weather","☀️ 好天气"],rain:["🌧 Rain plan","🌧 雨天方案"],rainTip:["Tired kids? Untick a stop and the schedule updates. In the rain plan, outdoor-only stops are skipped. Aim for 2–3 stops.","孩子累了？取消勾选一个景点，时间表会自动更新。雨天方案会跳过纯户外景点。建议只安排2–3个景点。"],
+ route:["Sightseeing route","观光路线"],pick:["Pick activities","选择活动"],details:["Details ▾","详情 ▾"],tap:["Tap for details ▾","点击查看详情 ▾"],why:["Why choose this?","为什么选这个？"],
+ voteNote:[" Votes are shared with everyone who opens this page. Tap another option to change your vote."," 投票会与所有打开此页面的人共享。点击其他选项即可更改你的投票。"],
+ voteLocal:[" Votes are saved on this device only."," 投票只保存在本设备。"],
+ pack:["🎒 Packing list","🎒 行李清单"],notes:["📝 Family Notes","📝 家庭提醒"],est:["Times, drive estimates and costs are estimates, not verified.","时间、车程和费用均为估计，未经核实。"],
+ summary:["🏔️ Trip Summary","🏔️ 行程总览"],s1:["Check-in → Night Market → Satay Celup","入住 → 夜市 → 沙爹火锅"],s2:["Breakfast → Tea / Flora / Farm activities → Steamboat","早餐 → 茶园/花园/农场活动 → 火锅"],s3:["Breakfast → Local produce shopping → Check-out → Home","早餐 → 购买当地农产品 → 退房 → 回家"],
+ d:[["2 Oct","10月2日"],["3 Oct","10月3日"],["4 Oct","10月4日"]],
+ none:["Nothing selected. Tick an activity below, or enjoy a rest day.","尚未选择。请在下方勾选活动，或好好休息一天。"],
+ lunch:["Lunch, rest & toilet break","午餐、休息与洗手间"],min75:["(75 min)","（75分钟）"],back:["Back to Golden Hill to rest before dinner","回 Golden Hill 休息，准备晚餐"],
+ skipped:["🌧 Skipped in rain plan","🌧 雨天方案中跳过"],maps:["Open in Maps","在地图中打开"],mkt:["Find a market on Maps","在地图中找市场"],
+ sug:["suggestion","建议"],estp:["estimate","估计"],
+ f2:["👶 2-year-old","👶 2岁"],f38:["👧 Ages 3–8","👧 3–8岁"],trav:["🚗 Travel","🚗 车程"],rainOk:["🌧 Works in light rain","🌧 小雨也可以"],rainNo:["🌧 Outdoors, so skip if wet","🌧 户外景点，下雨请跳过"],hi:["📸","📸"],cost:["💰","💰"],
+ from:["from","从"],min:["min","分钟"],breakfast:["Breakfast","早餐"],tot:["votes","票"]
+};
+
+/* ===== 4. STATE ===== */
+let LANG=0,S={day:0,rain:false,sel:{},chk:{}},R={};
+try{Object.assign(S,JSON.parse(localStorage.getItem("cht")||"{}"));LANG=+localStorage.getItem("chl")||0;R=JSON.parse(localStorage.getItem("chv")||"{}")}catch(e){}
+let VOTER;try{VOTER=localStorage.getItem("chid");if(!VOTER){VOTER="v"+Math.random().toString(36).slice(2,10);localStorage.setItem("chid",VOTER)}}catch(e){VOTER="v"+Math.random().toString(36).slice(2,10)}
+const save=()=>{try{localStorage.setItem("cht",JSON.stringify(S));if(!DB)localStorage.setItem("chv",JSON.stringify(R))}catch(e){}};
+const $=id=>document.getElementById(id);
+const t=x=>Array.isArray(x)?x[LANG]:x;
+const fmt=m=>{m=Math.round(m);let h=Math.floor(m/60)%24,mi=m%60,ap=h>=12?(LANG?"下午":"PM"):(LANG?"上午":"AM");h=h%12||12;return LANG?ap+h+":"+String(mi).padStart(2,"0"):h+":"+String(mi).padStart(2,"0")+" "+ap};
+const toMin=s=>{const[a,b]=s.split(" ");let[h,m]=a.split(":").map(Number);if(b==="PM"&&h<12)h+=12;return h*60+m};
+const mapBtn=(q,l)=>`<a class="btn" target="_blank" rel="noopener" href="${mapQ(q)}">🗺 ${t(l||UI.maps)}</a>`;
+const count=(q,v)=>Object.values(R[q]||{}).filter(x=>v===undefined?x:x===v).length;
+const mine=q=>(R[q]||{})[VOTER];
+
+/* ===== 5. SHARED VOTES ===== */
+async function setVote(q,v){
+ R[q]=R[q]||{};
+ if(v===null||v===undefined)delete R[q][VOTER];else R[q][VOTER]=v;
+ render();save();
+ if(!DB)return;
+ try{await fetch(`${DB}/votes/${q}/${VOTER}.json`,{method:v==null?"DELETE":"PUT",body:JSON.stringify(v)})}catch(e){}
+}
+async function pull(){
+ if(!DB)return;
+ try{const r=await fetch(`${DB}/votes.json`);const d=(await r.json())||{};
+  if(JSON.stringify(d)!==JSON.stringify(R)){R=d;render()}}catch(e){}
+}
+const vBtn=(q,v,lab)=>{const on=v===undefined?mine(q):mine(q)===v;return `<button class="btn ${on?"f":""}" onclick="setVote('${q}',${v===undefined?(mine(q)?"null":"true"):(on?"null":v)})">👍 ${count(q,v)}${on?" ✓":""}</button>`};
+
+/* ===== 6. RENDER ===== */
+function famPanel(){
+ $("famH").textContent=t(UI.group);
+ $("famBody").innerHTML=TRIP.families.map(f=>`<p style="margin:8px 0"><b>${t(UI.fam)} ${f[0]}</b><br><small>${t(f[1])}</small></p>`).join("")+
+ `<hr style="border:0;border-top:1px solid var(--line)"><p><b>${t(UI.total)}</b><br><small>${t(UI.totalSub)}</small></p>`;
+}
+function header(){
+ $("hTitle").textContent=t(UI.title);$("hSub").textContent=t(UI.sub);
+ $("hChips").innerHTML=UI.chips.map(c=>`<span class="chip">${t(c)}</span>`).join("");
+ $("langBtn").textContent=LANG?"English":"中文";
+ document.documentElement.lang=LANG?"zh":"en";document.title=t(UI.title).replace("🍓 ","");
+}
+function stop(b){
+ return `<div class="card h" onclick="this.classList.toggle('open')" style="cursor:pointer">
+ <div class="time">${t(b.time)}</div><b>${t(b.title)}</b> ${b.big?`<span class="pill w">${t(b.big)}</span>`:""}
+ <div class="m">📍 ${b.loc} · ⏱ ${t(b.dur)}</div>
+ <div class="exp"><p>${t(b.notes)}</p>${b.tip?`<div class="tip">💡 ${t(b.tip)}</div>`:""}<span onclick="event.stopPropagation()">${mapBtn(b.loc)}</span></div>
+ <small>${t(UI.tap)}</small></div>`;
+}
+function vote(b){
+ return `<h3>${t(b.title)}</h3><div class="opt">`+b.opts.map((o,i)=>{
+  const on=mine(b.id)===i;
+  return `<div class="card h" style="${on?"border-color:var(--g);border-width:2px":""}">
+  <b>${t(o.n)}</b><div class="m">${t(o.style)}</div>
+  <p style="margin:6px 0"><span class="pill">👶 ${t(o.kid)}</span><span class="pill e">${t(UI.sug)}</span></p>
+  <small><b>${t(UI.why)}</b> ${t(o.why)}</small>
+  <div class="row" style="margin-top:10px">${mapBtn(o.n[0])}${vBtn(b.id,i)}</div></div>`;
+ }).join("")+`</div><small>${DB?"":t(UI.voteLocal)}${t(UI.voteNote)}</small>`;
+}
+function route(b){
+ const sel=S.sel[b.id]||b.sel;
+ let tm=toMin(b.start),lunch=false,rows="",prev=t(UI.breakfast);
+ const lunchRow=()=>`<div class="card lunch"><span class="time">${fmt(tm)}</span> 🍽 <b>${t(UI.lunch)}</b> <small>${t(UI.min75)}</small></div>`;
+ const cards=b.items.map(a=>{
+  const blocked=S.rain&&!a.rain,on=sel.includes(a.id)&&!blocked;
+  if(on){
+   if(!lunch&&tm>=735){rows+=lunchRow();tm+=75;lunch=true}
+   tm+=a.tr;
+   rows+=`<div class="m">🚗 ${prev} → ${t(a.n)} · ~${a.tr} ${t(UI.min)} <span class="pill e">${t(UI.estp)}</span></div><div class="card"><span class="time">${fmt(tm)}</span> <b>${t(a.n)}</b> <small>· ${a.dur} ${t(UI.min)}</small></div>`;
+   tm+=a.dur;prev=t(a.n);
+  }
+  return `<div class="card ${on?"":"off"}">
+  <div class="row"><label class="ck"><input class="cb" type="checkbox" ${on?"checked":""} ${blocked?"disabled":""} onchange="tog('${b.id}','${a.id}')"><b>${t(a.n)}</b></label>${vBtn("att_"+a.id)}</div>
+  ${blocked?`<span class="pill w">${t(UI.skipped)}</span>`:""}
+  <div onclick="this.parentNode.classList.toggle('open')" style="cursor:pointer"><span class="pill">${a.s}</span><span class="pill">⏱ ${a.dur} ${t(UI.min)}</span><span class="pill">🚶 ${t(a.walk)}</span> <small>${t(UI.details)}</small></div>
+  <div class="exp"><p style="margin:6px 0"><small>${t(UI.f2)}: ${t(a.t2)}<br>${t(UI.f38)}: ${t(a.t38)}<br>${t(UI.trav)} ~${a.tr} ${t(UI.min)} (${t(UI.estp)})<br>${t(a.rain?UI.rainOk:UI.rainNo)}<br>📸 ${t(a.hi)}<br>💰 ${t(a.cost)}<br>${t(a.note)}</small></p>${mapBtn(a.n[0])}</div></div>`;
+ }).join("");
+ if(!lunch&&rows){rows+=lunchRow();tm+=75}
+ rows=rows?rows+`<div class="card"><span class="time">~${fmt(tm)}</span> ${t(UI.back)}</div>`:`<div class="card">${t(UI.none)}</div>`;
+ return `<h3>${t(UI.route)}</h3>
+ <div class="sw"><button class="${S.rain?"":"on"}" onclick="setRain(false)">${t(UI.good)}</button><button class="${S.rain?"on":""}" onclick="setRain(true)">${t(UI.rain)}</button></div>
+ <div class="tip">${t(UI.rainTip)}</div><div class="tl">${rows}</div>
+ <h3>${t(UI.pick)}</h3><div class="opt">${cards}</div>`;
+}
+function check(b){
+ const d=b.items.filter((x,i)=>S.chk[b.id+i]).length;
+ return `<div class="card" style="border:2px solid var(--r)"><h3 style="margin-top:0;color:var(--r)">${t(b.title)}</h3><small>${t(b.note)}</small>
+ <div class="bar" style="margin:8px 0"><i style="width:${d/b.items.length*100}%"></i></div>
+ ${b.items.map((x,i)=>`<label class="ck ${S.chk[b.id+i]?"d":""}"><input class="cb" type="checkbox" ${S.chk[b.id+i]?"checked":""} onchange="ck('${b.id+i}')"><span>${t(x)}</span></label>`).join("")}
+ <p>${mapBtn(b.loc,UI.mkt)}</p></div>`;
+}
+function render(){
+ header();famPanel();
+ const D=TRIP.days[S.day];
+ const tabs=TRIP.days.map((d,i)=>`<button class="tab" role="tab" aria-selected="${i===S.day}" onclick="S.day=${i};save();render()"><b>${t(d.tab[0])}</b><span>${t(d.tab[1])}</span></button>`).join("");
+ const body=D.blocks.map(b=>b.k==="stop"?stop(b):b.k==="vote"?vote(b):b.k==="route"?route(b):check(b)).join("");
+ const pd=TRIP.pack.filter((x,i)=>S.chk["p"+i]).length;
+ $("app").innerHTML=`<div class="tabs" role="tablist">${tabs}</div><h2>${t(D.title)}</h2><div class="stack">${body}</div>
+ <div class="card" style="margin-top:16px"><h3 style="margin-top:0">${t(UI.pack)} <small>${pd}/${TRIP.pack.length}</small></h3><div class="bar"><i style="width:${pd/TRIP.pack.length*100}%"></i></div>
+ ${TRIP.pack.map((x,i)=>`<label class="ck ${S.chk["p"+i]?"d":""}"><input class="cb" type="checkbox" ${S.chk["p"+i]?"checked":""} onchange="ck('p${i}')"><span>${t(x)}</span></label>`).join("")}</div>
+ <div class="card" style="margin-top:16px"><h3 style="margin-top:0">${t(UI.notes)}</h3><ul style="margin:0;padding-left:20px">${TRIP.notes.map(n=>`<li>${t(n)}</li>`).join("")}</ul><p><small>${t(UI.est)}</small></p></div>
+ <div class="card" style="margin-top:16px"><h3 style="margin-top:0">${t(UI.summary)}</h3>
+ <div class="prog">${TRIP.days.map((d,i)=>`<span class="pill ${i<S.day?"":"e"}">${i<S.day?"✓ ":""}${t(d.tab[0]).toUpperCase()}</span>${i<2?"→":""}`).join(" ")}</div>
+ <p><b>${t(UI.d[0])}</b> ${t(UI.s1)}<br><b>${t(UI.d[1])}</b> ${t(UI.s2)}<br><b>${t(UI.d[2])}</b> ${t(UI.s3)}</p></div>`;
+}
+
+/* ===== 7. ACTIONS ===== */
+function tog(r,id){const b=TRIP.days[1].blocks.find(x=>x.id===r);const s=(S.sel[r]||b.sel).slice(),i=s.indexOf(id);i>=0?s.splice(i,1):s.push(id);S.sel[r]=s;save();render()}
+function ck(k){S.chk[k]=!S.chk[k];save();render()}
+function setRain(r){S.rain=r;save();render()}
+function setLang(){LANG=LANG?0:1;try{localStorage.setItem("chl",LANG)}catch(e){}render()}
+render();pull();setInterval(pull,8000);
+</script></body></html>
